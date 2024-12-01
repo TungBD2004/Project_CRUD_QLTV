@@ -12,6 +12,11 @@
     </parent>
 
     <properties>
+        <property>
+            <name>javax.jdo.option.ConnectionURL</name>
+            <value>jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true&amp;autoReconnect=true&amp;useSSL=false</value>
+            <description>metadata is stored in a MySQL server</description>
+        </property>
         <java.version>1.8</java.version>
     </properties>
 

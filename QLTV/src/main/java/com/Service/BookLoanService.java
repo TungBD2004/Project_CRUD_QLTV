@@ -1,14 +1,10 @@
 package com.Service;
 
-import com.Model.DTO.BookLoanDTO;
-import com.Model.Mapper.Mapper;
 import com.Repository.BookLoanRepository;
-import com.Repository.Entity.BookLoan;
-import com.Repository.Entity.Reader;
+import com.Entity.BookLoan;
+import com.Entity.Reader;
 import com.Repository.ReaderRepository;
-import org.apache.catalina.util.Introspection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

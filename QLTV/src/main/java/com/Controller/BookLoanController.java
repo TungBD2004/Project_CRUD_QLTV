@@ -1,15 +1,12 @@
 package com.Controller;
 
-import com.Model.DTO.BookLoanDTO;
-import com.Repository.Entity.BookLoan;
-import com.Repository.Entity.Reader;
+import com.Entity.BookLoan;
+import com.Entity.Reader;
 import com.Service.BookLoanService;
 import com.Service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
 
 @RestController
 public class BookLoanController {
@@ -28,7 +25,6 @@ public class BookLoanController {
             return null;
         }
     }
-
 
     @PostMapping(value = "/api/bookloans")
     public ResponseEntity<String> addBookLoan(@RequestBody String id) {

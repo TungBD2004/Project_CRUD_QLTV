@@ -1,9 +1,8 @@
 package com.Service;
 
 import com.Model.Mapper.Mapper;
-import com.Model.DTO.BookDTO;
 import com.Repository.BookRepository;
-import com.Repository.Entity.Book;
+import com.Entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

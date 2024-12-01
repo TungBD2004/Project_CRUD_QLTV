@@ -1,8 +1,6 @@
-package com.Repository.Entity;
+package com.Entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "bookloan")

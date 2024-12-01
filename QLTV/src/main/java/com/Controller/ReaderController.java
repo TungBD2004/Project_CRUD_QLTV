@@ -1,12 +1,11 @@
 package com.Controller;
 
-import com.Repository.Entity.Reader;
+import com.Entity.Reader;
 import com.Service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.Map;
 
 @RestController

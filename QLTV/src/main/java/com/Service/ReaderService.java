@@ -1,31 +1,16 @@
 package com.Service;
 
-import com.Model.Mapper.Mapper;
-import com.Model.DTO.ReaderDTO;
-import com.Repository.Entity.Reader;
+import com.Entity.Reader;
 import com.Repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @Service
 public class ReaderService {
     @Autowired
     private ReaderRepository readerRepository;
-    @Autowired
-    Mapper readerMapper;
-
-    public List<ReaderDTO> findAll() {
-        List<Reader> Readers = readerRepository.findAll();
-        List<ReaderDTO> readerDTOs = new ArrayList<>();
-        for (Reader reader : Readers) {
-            readerDTOs.add(readerMapper.toReaderDTO(reader));
-        }
-        return readerDTOs;
-    }
 
     public Reader findReaderById(Integer id) {
         if (!readerRepository.existsById(id)) {
@@ -70,5 +55,6 @@ public class ReaderService {
         if (params.containsKey("sex")) {
             readers.setSex((String) params.get("sex"));
         }
+        readerRepository.save(readers);
     }
 }

@@ -1,4 +1,4 @@
-package com.Repository.Entity;
+package com.Entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

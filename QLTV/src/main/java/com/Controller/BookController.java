@@ -1,9 +1,7 @@
 package com.Controller;
 
-import com.Repository.Entity.Book;
-import com.Repository.Entity.Reader;
+import com.Entity.Book;
 import com.Service.BookService;
-import com.Service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
