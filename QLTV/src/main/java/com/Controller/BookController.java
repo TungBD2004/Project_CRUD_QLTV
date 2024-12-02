@@ -1,6 +1,8 @@
 package com.Controller;
 
 import com.Entity.Book;
+import com.Model.DTO.BookDTO;
+import com.Model.Mapper.Mapper;
 import com.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +16,13 @@ import java.util.Map;
 public class BookController {
     @Autowired
     private BookService bookService;
-
+    @Autowired
+    private Mapper mapper;
     @GetMapping(value = "/api/books/{id}")
-    public Book getBookById(@PathVariable int id) {
-        Book result = new Book();
+    public BookDTO getBookById(@PathVariable int id) {
         try {
-            result = bookService.findBookById(id);
-            return result;
+            BookDTO bookDTO = new BookDTO();
+            return bookService.findBookById(id);
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -38,15 +40,15 @@ public class BookController {
     }
 
     @PostMapping(value = "/api/books")
-    public void addReader(@RequestBody Book book) {
-        bookService.createReader(book);
+    public void addReader(@RequestParam Map<String, Object> params) {
+        bookService.createReader(params);
     }
 
-    @PutMapping(value = "/api/books/{id}")
-    public ResponseEntity<String> updateReader(@PathVariable Integer id, @RequestParam Map<String, Object> params) {
+    @PutMapping(value = "/api/books")
+    public ResponseEntity<String> updateReader( @RequestParam Map<String, Object> params) {
         try {
-            bookService.updateBookById(id, params);
-            return ResponseEntity.ok("Cap nhat thanh cong sach co id la " + id);
+            bookService.updateBookById( params);
+            return ResponseEntity.ok("Cap nhat thanh cong sach  " );
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

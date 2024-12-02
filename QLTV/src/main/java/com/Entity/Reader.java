@@ -1,5 +1,8 @@
 package com.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,7 +31,7 @@ public class Reader {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "reader")
+    @OneToMany(mappedBy = "reader",fetch = FetchType.LAZY)
     private List<BookLoan> bookLoanList;
 
     public int getId() {

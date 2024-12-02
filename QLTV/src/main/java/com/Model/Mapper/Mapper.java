@@ -1,7 +1,9 @@
 package com.Model.Mapper;
 
+import com.Entity.BookLoanDetail;
 import com.Model.DTO.BookDTO;
 import com.Model.DTO.BookLoanDTO;
+import com.Model.DTO.BookLoanDetailDTO;
 import com.Model.DTO.ReaderDTO;
 import com.Entity.Book;
 import com.Entity.BookLoan;
@@ -28,5 +30,9 @@ public class Mapper {
     public BookLoanDTO toBookLoanDTO(BookLoan item) {
         BookLoanDTO bookLoanDTO = modelMapper.map(item, BookLoanDTO.class);
         return bookLoanDTO;
+    }
+    public BookLoanDetailDTO toBookLoanDetailDTO(BookLoanDetail item) {
+        BookLoanDetailDTO bookLoanDetailDTO = modelMapper.map(item, BookLoanDetailDTO.class);
+        return bookLoanDetailDTO;
     }
 }

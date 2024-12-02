@@ -1,5 +1,8 @@
 package com.Service;
 
+import com.Entity.Book;
+import com.Model.DTO.BookLoanDTO;
+import com.Model.Mapper.Mapper;
 import com.Repository.BookLoanRepository;
 import com.Entity.BookLoan;
 import com.Entity.Reader;
@@ -15,18 +18,33 @@ public class BookLoanService {
     private BookLoanRepository bookLoanRepository;
     @Autowired
     private ReaderRepository readerRepository;
+    @Autowired
+    private Mapper mapper;
 
-    public BookLoan findBookLoanById(Integer id) {
+    public BookLoanDTO findBookLoanById(Integer id) {
         if (!bookLoanRepository.existsById(id)) {
             throw new IllegalArgumentException("Khong co id ");
         }
+        if(!readerRepository.existsById(id)) {
+            throw new IllegalArgumentException("Khong co readerid ");
+        }
         BookLoan bookLoans = bookLoanRepository.findById(id).get();
-        return bookLoans;
+        return mapper.toBookLoanDTO(bookLoans);
     }
 
 
-    public void createBookLoan(Reader reader) {
+    public void createBookLoan(Map<String, Object> params) {
         BookLoan bookLoan = new BookLoan();
+        Reader reader = new Reader();
+        Integer readerid;
+        if(params.containsKey("readerid")){
+            readerid = Integer.parseInt((String) params.get("readerid"));
+            if(!readerRepository.existsById(readerid)) {
+                throw new IllegalArgumentException("Khong co readerid ");
+            }
+        }
+        readerid = Integer.parseInt((String) params.get("readerid"));
+        reader = readerRepository.findById(readerid).get();
         bookLoan.setReader(reader);
         bookLoanRepository.save(bookLoan);
     }
@@ -38,14 +56,26 @@ public class BookLoanService {
         bookLoanRepository.deleteById(id);
     }
 
-    public void updateBookLoanById(Integer id, Map<String, Object> params) {
-        if (!bookLoanRepository.existsById(id)) {
-            throw new IllegalArgumentException("Chua ton tai phieu muon co id " + id);
+
+    public void updateBookLoanById(Map<String, Object> params){
+        BookLoan bookLoan = new BookLoan();
+        Reader reader = new Reader();
+        if (params.containsKey("id")) {
+            bookLoan.setId(Integer.parseInt((String) params.get("id")));
         }
-        BookLoan bookLoans = bookLoanRepository.findById(id).get();
-        if (params.containsKey("readerid")) {
-            Reader reader = readerRepository.findById(Integer.parseInt(params.get("readerid").toString())).get();
-            bookLoans.setReader(reader);
+        if (!bookLoanRepository.existsById(bookLoan.getId())) {
+            throw new IllegalArgumentException("Chua ton tai phieu muon co id " );
         }
+        Integer readerid;
+        if(params.containsKey("readerid")){
+            readerid = Integer.parseInt((String) params.get("readerid"));
+            if(!readerRepository.existsById(readerid)) {
+                throw new IllegalArgumentException("Khong co readerid ");
+            }
+        }
+        readerid = Integer.parseInt((String) params.get("readerid"));
+        reader = readerRepository.findById(readerid).get();
+        bookLoan.setReader(reader);
+        bookLoanRepository.save(bookLoan);
     }
 }
