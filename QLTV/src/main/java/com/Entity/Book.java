@@ -19,19 +19,11 @@ public class Book {
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToMany(mappedBy = "Books")
+    /*@ManyToMany(mappedBy = "Books",fetch = FetchType.LAZY)
     private List<BookLoan> BookLoans = new ArrayList<BookLoan>();
-
-    @OneToMany(mappedBy = "book")
-    Set<BookLoanDetail> bookLoanDetails;
-
-    public Set<BookLoanDetail> getBookLoanDetails() {
-        return bookLoanDetails;
-    }
-
-    public void setBookLoanDetails(Set<BookLoanDetail> bookLoanDetails) {
-        this.bookLoanDetails = bookLoanDetails;
-    }
+*/
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+    private List<BookLoanDetail> bookLoanDetails = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -39,14 +31,6 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getQuantity() {
@@ -57,11 +41,19 @@ public class Book {
         this.quantity = quantity;
     }
 
-    public List<BookLoan> getBookLoans() {
-        return BookLoans;
+    public String getName() {
+        return name;
     }
 
-    public void setBookLoans(List<BookLoan> BookLoans) {
-        this.BookLoans = BookLoans;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<BookLoanDetail> getBookLoanDetails() {
+        return bookLoanDetails;
+    }
+
+    public void setBookLoanDetails(List<BookLoanDetail> bookLoanDetails) {
+        this.bookLoanDetails = bookLoanDetails;
     }
 }

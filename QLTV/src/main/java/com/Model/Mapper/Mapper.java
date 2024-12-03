@@ -31,8 +31,16 @@ public class Mapper {
         BookLoanDTO bookLoanDTO = modelMapper.map(item, BookLoanDTO.class);
         return bookLoanDTO;
     }
+
     public BookLoanDetailDTO toBookLoanDetailDTO(BookLoanDetail item) {
-        BookLoanDetailDTO bookLoanDetailDTO = modelMapper.map(item, BookLoanDetailDTO.class);
+        if(item == null){
+            return null;
+        }
+        BookLoanDetailDTO bookLoanDetailDTO = new BookLoanDetailDTO();
+        bookLoanDetailDTO.setId(item.getId());
+        bookLoanDetailDTO.setBookId(item.getBook().getId());
+        bookLoanDetailDTO.setBookLoanId(item.getBookloan().getId());
+        bookLoanDetailDTO.setQuantity(item.getQuantity());
         return bookLoanDetailDTO;
     }
 }

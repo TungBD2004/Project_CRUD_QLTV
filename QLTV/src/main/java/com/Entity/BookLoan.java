@@ -17,29 +17,21 @@ public class BookLoan {
     @JoinColumn(name = "readerid")
     private Reader reader;
 
-    @ManyToMany()
+    /*@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "bookloandetail",
     joinColumns = @JoinColumn(name = "bookloanid",nullable = false),
     inverseJoinColumns = @JoinColumn(name = "bookid",nullable = false))
-    private List<Book> Books = new ArrayList<Book>();
+    private List<Book> Books = new ArrayList<Book>();*/
 
-    @OneToMany(mappedBy = "bookloan")
-    Set<BookLoanDetail> bookLoanDetails;
+    @OneToMany(mappedBy = "bookloan", fetch = FetchType.LAZY)
+    private List<BookLoanDetail> bookLoanDetails = new ArrayList<>();
 
-    public Set<BookLoanDetail> getBookLoanDetails() {
-        return bookLoanDetails;
+    public int getId() {
+        return id;
     }
 
-    public void setBookLoanDetails(Set<BookLoanDetail> bookLoanDetails) {
-        this.bookLoanDetails = bookLoanDetails;
-    }
-
-    public List<Book> getBooks() {
-        return Books;
-    }
-
-    public void setBooks(List<Book> Books) {
-        this.Books = Books;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Reader getReader() {
@@ -50,11 +42,12 @@ public class BookLoan {
         this.reader = reader;
     }
 
-    public int getId() {
-        return id;
+    public List<BookLoanDetail> getBookLoanDetails() {
+        return bookLoanDetails;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBookLoanDetails(List<BookLoanDetail> bookLoanDetails) {
+        this.bookLoanDetails = bookLoanDetails;
     }
+
 }

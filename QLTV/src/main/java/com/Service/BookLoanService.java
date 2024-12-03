@@ -25,7 +25,7 @@ public class BookLoanService {
         if (!bookLoanRepository.existsById(id)) {
             throw new IllegalArgumentException("Khong co id ");
         }
-        if(!readerRepository.existsById(id)) {
+        if (!readerRepository.existsById(id)) {
             throw new IllegalArgumentException("Khong co readerid ");
         }
         BookLoan bookLoans = bookLoanRepository.findById(id).get();
@@ -37,9 +37,9 @@ public class BookLoanService {
         BookLoan bookLoan = new BookLoan();
         Reader reader = new Reader();
         Integer readerid;
-        if(params.containsKey("readerid")){
+        if (params.containsKey("readerid")) {
             readerid = Integer.parseInt((String) params.get("readerid"));
-            if(!readerRepository.existsById(readerid)) {
+            if (!readerRepository.existsById(readerid)) {
                 throw new IllegalArgumentException("Khong co readerid ");
             }
         }
@@ -57,19 +57,19 @@ public class BookLoanService {
     }
 
 
-    public void updateBookLoanById(Map<String, Object> params){
+    public void updateBookLoanById(Map<String, Object> params) {
         BookLoan bookLoan = new BookLoan();
         Reader reader = new Reader();
         if (params.containsKey("id")) {
             bookLoan.setId(Integer.parseInt((String) params.get("id")));
         }
         if (!bookLoanRepository.existsById(bookLoan.getId())) {
-            throw new IllegalArgumentException("Chua ton tai phieu muon co id " );
+            throw new IllegalArgumentException("Chua ton tai phieu muon co id ");
         }
         Integer readerid;
-        if(params.containsKey("readerid")){
+        if (params.containsKey("readerid")) {
             readerid = Integer.parseInt((String) params.get("readerid"));
-            if(!readerRepository.existsById(readerid)) {
+            if (!readerRepository.existsById(readerid)) {
                 throw new IllegalArgumentException("Khong co readerid ");
             }
         }

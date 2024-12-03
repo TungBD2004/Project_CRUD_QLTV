@@ -19,6 +19,7 @@ public class BookLoanController {
     private BookLoanService bookLoanService;
     @Autowired
     private Mapper mapper;
+
     @GetMapping(value = "/api/bookloans/{id}")
     public BookLoanDTO getBookLoansById(@PathVariable Integer id) {
         try {
@@ -48,13 +49,13 @@ public class BookLoanController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     @PutMapping(value = "/api/bookloans")
     public ResponseEntity<String> updateBookLoan(@RequestParam Map<String, Object> params) {
         try {
             bookLoanService.updateBookLoanById(params);
             return ResponseEntity.ok("Cap nhat thanh cong bookloan ");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

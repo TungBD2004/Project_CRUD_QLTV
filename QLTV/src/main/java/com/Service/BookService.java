@@ -42,13 +42,13 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void updateBookById( Map<String, Object> params) {
+    public void updateBookById(Map<String, Object> params) {
         Book books = new Book();
         if (params.containsKey("id")) {
             books.setId(Integer.parseInt((String) params.get("id")));
         }
         if (!bookRepository.existsById(books.getId())) {
-            throw new IllegalArgumentException("Khong ton tai sach " );
+            throw new IllegalArgumentException("Khong ton tai sach ");
         }
 
         if (params.containsKey("name")) {

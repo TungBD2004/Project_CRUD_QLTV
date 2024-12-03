@@ -1,9 +1,18 @@
 package com.Model.DTO;
 
 public class BookLoanDetailDTO {
+    private int id;
     private int bookLoanId;
     private int bookId;
     private int quantity;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getBookLoanId() {
         return bookLoanId;
@@ -28,4 +37,5 @@ public class BookLoanDetailDTO {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

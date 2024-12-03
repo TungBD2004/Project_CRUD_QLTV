@@ -5,36 +5,28 @@ import javax.persistence.*;
 @Entity
 @Table(name = "bookloandetail")
 public class BookLoanDetail {
-    @EmbeddedId
-    BookLoanDetailKey id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @ManyToOne
-    @MapsId("bookLoanId")
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookloanid")
     BookLoan bookloan;
 
-    @ManyToOne
-    @MapsId("bookId")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookid")
     Book book;
 
     @Column(name = "quantity")
     int quantity;
 
-    public BookLoanDetailKey getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(BookLoanDetailKey id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public BookLoan getBookloan() {
-        return bookloan;
-    }
-
-    public void setBookloan(BookLoan bookloan) {
-        this.bookloan = bookloan;
     }
 
     public Book getBook() {
@@ -45,6 +37,14 @@ public class BookLoanDetail {
         this.book = book;
     }
 
+    public BookLoan getBookloan() {
+        return bookloan;
+    }
+
+    public void setBookloan(BookLoan bookloan) {
+        this.bookloan = bookloan;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -52,4 +52,5 @@ public class BookLoanDetail {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

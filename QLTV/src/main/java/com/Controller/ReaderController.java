@@ -16,11 +16,12 @@ public class ReaderController {
     private ReaderService readerService;
     @Autowired
     Mapper mapper;
+
     @GetMapping(value = "/api/readers/{id}")
     public ReaderDTO getReadersById(@PathVariable Integer id) {
         ReaderDTO dto = new ReaderDTO();
         try {
-            dto  = readerService.findReaderById(id);
+            dto = readerService.findReaderById(id);
             return dto;
         } catch (IllegalArgumentException e) {
             return null;
@@ -38,15 +39,15 @@ public class ReaderController {
     }
 
     @PostMapping(value = "/api/readers")
-    public void addReader(@RequestBody @RequestParam Map<String, Object> params) {
+    public void addReader(@RequestParam Map<String, Object> params) {
         readerService.createReader(params);
     }
 
     @PutMapping(value = "/api/readers/")
-    public ResponseEntity<String> updateReader( @RequestParam Map<String, Object> params) {
+    public ResponseEntity<String> updateReader(@RequestParam Map<String, Object> params) {
         try {
             readerService.updateReaderById(params);
-            return ResponseEntity.ok("Cap nhat thanh cong doc gia " );
+            return ResponseEntity.ok("Cap nhat thanh cong doc gia ");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

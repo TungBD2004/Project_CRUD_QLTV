@@ -31,7 +31,7 @@ public class Reader {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "reader",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "reader", fetch = FetchType.LAZY)
     private List<BookLoan> bookLoanList;
 
     public int getId() {

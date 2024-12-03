@@ -12,12 +12,12 @@ import javax.transaction.Transactional;
 import java.util.Map;
 
 @RestController
-@Transactional
 public class BookController {
     @Autowired
     private BookService bookService;
     @Autowired
     private Mapper mapper;
+
     @GetMapping(value = "/api/books/{id}")
     public BookDTO getBookById(@PathVariable int id) {
         try {
@@ -45,10 +45,10 @@ public class BookController {
     }
 
     @PutMapping(value = "/api/books")
-    public ResponseEntity<String> updateReader( @RequestParam Map<String, Object> params) {
+    public ResponseEntity<String> updateReader(@RequestParam Map<String, Object> params) {
         try {
-            bookService.updateBookById( params);
-            return ResponseEntity.ok("Cap nhat thanh cong sach  " );
+            bookService.updateBookById(params);
+            return ResponseEntity.ok("Cap nhat thanh cong sach  ");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

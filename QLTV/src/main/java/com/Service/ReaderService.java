@@ -55,13 +55,14 @@ public class ReaderService {
         }
         readerRepository.save(readers);
     }
+
     public void updateReaderById(Map<String, Object> params) {
         Reader readers = new Reader();
         if (params.containsKey("id")) {
             readers.setId(Integer.parseInt((String) params.get("id")));
         }
         if (!readerRepository.existsById(readers.getId())) {
-            throw new IllegalArgumentException("Khong ton tai docgia " );
+            throw new IllegalArgumentException("Khong ton tai doc gia ");
         }
         if (params.containsKey("name")) {
             readers.setName((String) params.get("name"));
