@@ -23,11 +23,11 @@ CREATE TABLE bookloan (
     FOREIGN KEY (readerid) REFERENCES reader(id) ON DELETE CASCADE
 );
 CREATE TABLE bookloandetail (
-    id int auto_increment,
+    id int auto_increment primary key,
+    bookloanid int,
 	bookid int,
 	quantity int,
-	primary key(id,bookid),
-    FOREIGN KEY (id) REFERENCES bookloan(id),
-	FOREIGN KEY (bookid) REFERENCES book(id)
+    FOREIGN KEY (bookloanid) REFERENCES bookloan(id) ON DELETE CASCADE,
+	FOREIGN KEY (bookid) REFERENCES book(id) ON DELETE CASCADE
 );
 
